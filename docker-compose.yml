@@ -49,6 +49,33 @@ services:
     depends_on:
       - elasticsearch
 
+  p4.helix: 
+    build: helix-p4d
+    hostname: p4
+#    domainname: helix
+    env_file:
+      - p4.env
+    networks:
+      - elk
+    volumes:
+      - ./helix-p4d/logs/:/p4/logs
+    ports:
+      - 4000:1666
+    tty: true
+
+  p4dbeat: 
+    build: p4dbeat
+    hostname: p4dbeat
+#    domainname: helix
+    networks:
+      - elk
+    volumes:
+      - ./helix-p4d/logs/:/p4/logs
+    tty: true
+    depends_on:
+      - elasticsearch
+      - p4.helix
+
 networks:
 
   elk:
