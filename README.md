@@ -15,6 +15,11 @@ Based on the official Docker images from Elastic:
 * [logstash](https://github.com/elastic/logstash-docker)
 * [kibana](https://github.com/elastic/kibana-docker)
 
+Including:
+
+* [p4dbeat](https://github.com/rcowham/p4dbeat)
+* [helix-p4d](https://github.com/p4paul/jenkins-demo) (from Jenkins demo project)
+
 **Note**: Other branches in this project are available:
 
 * [`x-pack`](https://github.com/deviantony/docker-elk/tree/x-pack): X-Pack support
@@ -92,6 +97,7 @@ By default, the stack exposes the following ports:
 * 9200: Elasticsearch HTTP
 * 9300: Elasticsearch TCP transport
 * 5601: Kibana
+* 4000: Perforce server
 
 **WARNING**: If you're using `boot2docker`, you must access it via the `boot2docker` IP address instead of `localhost`.
 
