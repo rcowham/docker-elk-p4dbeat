@@ -1,0 +1,6 @@
+pyaml
+p4python
+numpy
+pyzmq
+locustio
+mimesis

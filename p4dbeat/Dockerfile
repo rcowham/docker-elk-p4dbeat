@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Docker configuration for P4D
+# Docker configuration for p4dbeat
 # --------------------------------------------------------------------------------
 
 FROM ubuntu:14.04
@@ -27,13 +27,11 @@ RUN echo perforce:perforce | /usr/sbin/chpasswd
 # Install p4dbeat
 
 # Add external files
-# USER perforce
 ADD files/p4dbeat.yml /p4/
 ADD files/p4dbeat /p4/
-ADD files/go-tail.linux /p4/
 
+# Wait until elastic is up and running
 ENTRYPOINT \
-	/p4/p4dbeat -c /p4/p4dbeat.yml -e -d "*" && \
+	until nc -zw 1 elasticsearch 9200; do sleep 1; done && \
+  /p4/p4dbeat -c /p4/p4dbeat.yml -e -d "*" && \
   bash
-
-	# /p4/go-tail.linux -f /p4/logs/p4d.log && \

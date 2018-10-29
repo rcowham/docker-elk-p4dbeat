@@ -1,0 +1,27 @@
+general:
+    min_wait: 1000
+    max_wait: 1000
+    workspace_root:  /tmp/ws
+
+# Perforce benchmark testing parameters
+# Specify password if required
+perforce:
+    port:       
+    - p4.helix:1666
+    user:       bruno
+    charset:
+    password:
+    options:  noallwrite noclobber nocompress unlocked nomodtime rmdir
+    sync_progress_size_interval: 1 * 1000 * 1000
+    # The following should not include trailing /...
+    # Will be used as base for selection after running "p4 dirs %s/*"
+    repoPath:   //depot
+    repoSubDir: "*"
+    # repoSubDirNum: 5
+    # How many times to repeat the loop
+    repeat: 10
+    # sync_args: any extra sync arguments. This will result in the spawning of a "p4" command
+    # Example to avoid actually writing files to filesystem on client side:
+    #sync_args: -vfilesys.client.nullsync=1
+    # Any other -v or similar options possible.
+    # Note that the following commands will be passed automatically: -p/-u/-c

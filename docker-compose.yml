@@ -76,6 +76,17 @@ services:
       - elasticsearch
       - p4.helix
 
+  p4benchmark: 
+    build: p4benchmark
+    hostname: p4benchmark
+    networks:
+      - elk
+    ports:
+      - 8089:8089
+    tty: true
+    depends_on:
+      - p4.helix
+
 networks:
 
   elk:
