@@ -19,6 +19,7 @@ Including:
 
 * [p4dbeat](https://github.com/rcowham/p4dbeat)
 * [helix-p4d](https://github.com/p4paul/jenkins-demo) (from Jenkins demo project)
+* [p4benchmark](https://swarm.workshop.perforce.com/projects/robert_cowham-p4benchmark/files/main)
 
 **Note**: Other branches in this project are available:
 
@@ -98,6 +99,7 @@ By default, the stack exposes the following ports:
 * 9300: Elasticsearch TCP transport
 * 5601: Kibana
 * 4000: Perforce server
+* 8089: Locust server for p4benchmark
 
 **WARNING**: If you're using `boot2docker`, you must access it via the `boot2docker` IP address instead of `localhost`.
 
@@ -110,6 +112,8 @@ to send content via TCP:
 ```console
 $ nc localhost 5000 < /path/to/logfile.log
 ```
+
+For Perforce it is as simple as going to the http://localhost:8089/ page and click the 'swarm' button.
 
 ## Initial setup
 
