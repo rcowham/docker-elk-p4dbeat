@@ -29,9 +29,12 @@ RUN echo perforce:perforce | /usr/sbin/chpasswd
 # Add external files
 ADD files/p4dbeat.yml /p4/
 ADD files/p4dbeat /p4/
+ADD files/api_dashboard.json /p4/
+ADD files/setup_kibana_dashboard.sh /p4/
 
 # Wait until elastic is up and running
 ENTRYPOINT \
 	until nc -zw 1 elasticsearch 9200; do sleep 1; done && \
+  /p4/setup_kibana_dashboard.sh kibana 5601 /p4/api_dashboard.json && \
   /p4/p4dbeat -c /p4/p4dbeat.yml -e -d "*" && \
   bash
