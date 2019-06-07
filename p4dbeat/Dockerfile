@@ -31,6 +31,7 @@ ADD files/p4dbeat.yml /p4/
 ADD files/p4dbeat /p4/
 ADD files/api_dashboard.json /p4/
 ADD files/setup_kibana_dashboard.sh /p4/
+RUN chmod 644 /p4/p4dbeat.yml
 
 # Wait until elastic is up and running
 ENTRYPOINT \
