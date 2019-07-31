@@ -54,15 +54,11 @@ USER root
 RUN mkdir /p4/logs
 RUN chown -R perforce:perforce /p4
 RUN chmod +x /p4/jtrigger.sh
-# ADD files/p4dbeat.yml /p4/
-# ADD files/p4dbeat /p4/
 
 ENTRYPOINT \
 	export SWARMHOST=${SWARMHOST} && \
 	export SWARMTOKEN=${SWARMTOKEN} && \
-	p4dctl start main && \	
+	p4dctl -v 1 start main && \	
 	until nc -zw 1 p4.helix 1666; do sleep 1; done && \
 	p4 passwd -P ${P4PASSWD} && \
 	bash
-
-  # /p4/p4dbeat -c /p4/p4dbeat.yml -e -d "*" && \
